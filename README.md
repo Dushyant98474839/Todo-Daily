@@ -159,4 +159,7 @@ todo-daily/
 - **Backend Errors**:
   - Check that the SQLite database (`todo.db`) is created and accessible.
   - Verify environment variables in `.env` are correctly set.
+ 
+## LLMs Assistance
+https://grok.com/share/bGVnYWN5_3e3f9d88-2502-4323-9036-6045e537c617
 
