@@ -3,6 +3,9 @@ import { EditOutlined, DeleteOutlined, CheckOutlined, CloseOutlined } from '@ant
 import { Input, Select } from 'antd';
 import axios from 'axios';
 
+
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const { TextArea } = Input;
 
 function Card({ id,title, description, status, date, setTasks }) {
@@ -23,7 +26,7 @@ function Card({ id,title, description, status, date, setTasks }) {
 
   const handleDelete = async () => {
     try {
-      const response = await axios.delete(`http://localhost:8000/tasks/${localid}`, {
+      const response = await axios.delete(`${API_BASE_URL}/tasks/${localid}`, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -40,7 +43,7 @@ function Card({ id,title, description, status, date, setTasks }) {
   const handleSave = async () => {
     try{
       console.log('localdate:', localDate);
-      const response = await axios.put(`http://localhost:8000/tasks/${localid}`, {
+      const response = await axios.put(`${API_BASE_URL}/tasks/${localid}`, {
         title: localTitle,
         description: localDescription,
         status: localStatus,

@@ -4,7 +4,7 @@ import Card from './components/Card.jsx'
 import { AddNew } from './components/AddNew.jsx'
 import axios from 'axios'
 
-
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 var TodoData = {
   title: "Todo",
   description: "This is a todo <div className=columns flex flex-row items-center justify-center min-w-screendiv className=todo-col flex flex-col flex-1 border-2 border-gray-300 rounded-lg p-4 m-4",
@@ -25,7 +25,7 @@ function App() {
           return;
         }
 
-        const response = await axios.get('http://localhost:8000/tasks', {
+        const response = await axios.get(`${API_BASE_URL}/tasks`, {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,

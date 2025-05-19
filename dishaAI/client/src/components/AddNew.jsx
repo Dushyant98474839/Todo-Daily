@@ -3,6 +3,8 @@ import { PlusSquareTwoTone } from '@ant-design/icons';
 import TodoForm from './TodoForm.jsx';
 import axios from 'axios';
 
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 export const AddNew = ({setTasks}) => {
   const [showForm, setShowForm] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -25,7 +27,7 @@ export const AddNew = ({setTasks}) => {
       }
       console.log('Form data:', formData);
       const response = await axios.post(
-        'http://localhost:8000/tasks',
+        `${API_BASE_URL}/tasks`,
         {
           title: formData.title,
           description: formData.description,
