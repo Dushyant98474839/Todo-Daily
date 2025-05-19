@@ -11,6 +11,9 @@ from jose import JWTError, jwt
 from datetime import datetime, timedelta
 from uuid import uuid4
 from dotenv import load_dotenv
+from fastapi import FastAPI, Request
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 import os
 
 # --- CONFIG ---
@@ -206,3 +209,12 @@ def delete_task(task_uuid: str, db: Session = Depends(get_db), current_user: Use
     db.delete(db_task)
     db.commit()
     return {"detail": "Task deleted successfully"}
+
+app.mount("/assets", StaticFiles(directory="../client/dist/assets"), name="assets")
+
+@app.get("/{full_path:path}")
+async def serve_vue(full_path: str, request: Request):
+    index_path = os.path.join(os.path.dirname(__file__), "../client/dist/index.html")
+    if os.path.exists(index_path):
+        return FileResponse(index_path)
+    return {"error": "index.html not found"}
