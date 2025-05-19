@@ -5,7 +5,7 @@
 [https://todo-daily.onrender.com](https://todo-daily.onrender.com)
 
 ##
-Todo-Daily is a task management application that allows users to create, edit, delete, and organize tasks across three statuses: **Todo**, **In Progress**, and **Done**. The application features a drag-and-drop interface for moving tasks between columns, built with React and `react-beautiful-dnd` on the frontend and FastAPI with SQLite and JWT authentication on the backend.
+Todo-Daily is a task management application that allows users to create, edit, delete, and organize tasks across three statuses: **Todo**, **In Progress**, and **Done**. The application features a drag-and-drop interface for moving tasks between columns, built with React and `react-beautiful-dnd` on the client and FastAPI with SQLite and JWT authentication on the backend.
 
 ## Features
 - **User Authentication**: Register and log in with JWT-based authentication.
@@ -19,7 +19,7 @@ Todo-Daily is a task management application that allows users to create, edit, d
 - **Error Handling**: Handles authentication errors, network issues, and task operation failures gracefully.
 
 ## Tech Stack
-- **Frontend**:
+- **client**:
   - React 18
   - `react-beautiful-dnd` for drag-and-drop functionality
   - Ant Design for UI components
@@ -46,11 +46,12 @@ Todo-Daily is a task management application that allows users to create, edit, d
 1. **Clone the Repository**:
    ```bash
    git clone https://github.com/Dushyant98474839/Todo-Daily
-   cd todo-daily
+   cd dishaAI/todo-daily
    ```
 
 2. **Set Up a Virtual Environment**:
    ```bash
+   cd server
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
@@ -77,13 +78,13 @@ Todo-Daily is a task management application that allows users to create, edit, d
    ```
    The API will be available at `http://localhost:8000`.
 
-### Frontend Setup
-1. **Navigate to the Frontend Directory**:
+### client Setup
+1. **Navigate to the client Directory**:
    ```bash
-   cd frontend
+   cd client
    ```
 
-2. **Install Frontend Dependencies**:
+2. **Install client Dependencies**:
    ```bash
    npm install
    ```
@@ -94,12 +95,12 @@ Todo-Daily is a task management application that allows users to create, edit, d
    - `react-router-dom`
 
 3. **Configure Environment Variables**:
-   Create a `.env` file in the frontend directory:
+   Create a `.env` file in the client directory:
    ```
    VITE_API_BASE_URL=http://localhost:8000
    ```
 
-4. **Run the Frontend**:
+4. **Run the client**:
    ```bash
    npm run dev
    ```
@@ -133,19 +134,36 @@ Todo-Daily is a task management application that allows users to create, edit, d
 ## Project Structure
 ```
 todo-daily/
-├── frontend/
+├── client/
+│   ├── node_modules/           # Node.js dependencies
+│   ├── public/                 # Static assets
 │   ├── src/
+│   │   ├── assets/             # Images, fonts, etc.
 │   │   ├── components/
 │   │   │   ├── Card.jsx        # Task card component
 │   │   │   ├── AddNew.jsx      # Add new task button and form
 │   │   │   ├── TodoForm.jsx    # Task creation/edit form
+|   |   │   ├── Login.jsx           # Login page
+│   |   │   ├── Signup.jsx          # Signup page
+│   │   ├── App.css             # Styles for the main app
 │   │   ├── App.jsx             # Main app with drag-and-drop
-│   │   ├── Login.jsx           # Login page
-│   │   ├── Signup.jsx          # Signup page
-│   ├── .env                    # Frontend environment variables
-├── main.py                     # FastAPI backend
-├── .env                        # Backend environment variables
-├── todo.db                     # SQLite database
+│   │   ├── index.css           # Global styles
+│   │   ├── main.jsx            # Entry point for React
+│   ├── .env.local              # Frontend environment variables
+│   ├── .gitignore              # Git ignore file
+│   ├── eslint.config.js        # ESLint configuration
+│   ├── index.html              # HTML entry point
+│   ├── package-lock.json       # NPM lock file
+│   ├── package.json            # Frontend dependencies and scripts
+│   ├── README.md               # Frontend README
+│   ├── vite.config.js          # Vite configuration
+├── server/
+│   ├── __pycache__/            # Python cache files
+│   ├── .env                    # Backend environment variables
+│   ├── main.py                 # FastAPI backend
+│   ├── requirements.txt        # Backend dependencies
+│   ├── SQL_app.db              # SQLite database
+├── README.md                   # Project README
 ```
 
 ## Troubleshooting
