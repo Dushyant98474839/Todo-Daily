@@ -210,11 +210,13 @@ def delete_task(task_uuid: str, db: Session = Depends(get_db), current_user: Use
     db.commit()
     return {"detail": "Task deleted successfully"}
 
-app.mount("/assets", StaticFiles(directory="../client/dist/assets"), name="assets")
+# Serve static files (JS, CSS, etc.)
+app.mount("/assets", StaticFiles(directory="../client/dist"), name="assets")
 
+# Serve the index.html for all non-API GET requests
 @app.get("/{full_path:path}")
 async def serve_vue(full_path: str, request: Request):
-    index_path = os.path.join(os.path.dirname(__file__), "../client/dist/index.html")
+    index_path = os.path.join(os.path.dirname(__file__), "../client/dist", full_path)
     if os.path.exists(index_path):
         return FileResponse(index_path)
     return {"error": "index.html not found"}
